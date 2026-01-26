@@ -1,8 +1,3 @@
-Here is the fixed, clean, and fully formatted `README.md` code. I have corrected the code block syntax, removed the conversational filler text, and ensured the author name is updated to **Rohit Kumar Prasad**.
-
-You can copy the entire block below and paste it directly into your `README.md` file.
-
-```markdown
 # 🎬 Reelify – Movie Discovery Web App
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
