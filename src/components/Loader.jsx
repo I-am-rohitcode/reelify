@@ -3,7 +3,7 @@ function Loader() {
     <div className="min-h-screen flex items-center justify-center bg-black">
       <div className="flex flex-col items-center gap-6">
         <img
-          src="/public/Icon.png"
+          src="/Icon.png"
           alt="Reelify"
           className="h-24 w-24 object-contain animate-logo-pulse"
           style={{ filter: "drop-shadow(2px 4px 6px black)" }}
