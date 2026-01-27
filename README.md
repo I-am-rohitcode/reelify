@@ -12,15 +12,18 @@
 ## 🚀 Features
 
 ### 🌟 Discovery
+
 - **Trending & Popular:** Browse the top-rated and most popular movies globally.
 - **New Releases:** Stay updated with movies currently in theaters.
 - **Upcoming:** Get a sneak peek at movies releasing soon.
 
 ### 🇮🇳 Special Feature: Bollywood Filter
+
 - **One-Click Toggle:** Instantly filter movies to show only **Hindi (Bollywood)** content.
 - **Smart Filtering:** Works across Home sections, Upcoming, New Releases, Search, and Similar Movies.
 
 ### 🔍 Search & Details
+
 - **Real-time Search:** Instant results as you type.
 - **Immersive Details Page:**
   - Cinematic banner with gradient fade.
@@ -28,6 +31,7 @@
   - "Similar Movies" recommendations.
 
 ### 🎨 UI/UX
+
 - **Fully Responsive:** Optimized for Mobile, Tablet, and Desktop.
 - **Smooth Animations:** Fade-in scroll effects and logo-based loading animations.
 - **Dark Themed UI:** Cinematic feel with clean typography.
@@ -36,14 +40,14 @@
 
 ## 🛠️ Tech Stack
 
-| Domain | Technology |
-| :--- | :--- |
-| **Frontend Framework** | React (Vite) |
-| **Styling** | Tailwind CSS + Custom CSS |
-| **Routing** | React Router DOM |
-| **State Management** | React Context API |
-| **API** | TMDB (The Movie Database) |
-| **HTTP Client** | Axios |
+| Domain                 | Technology                |
+| :--------------------- | :------------------------ |
+| **Frontend Framework** | React (Vite)              |
+| **Styling**            | Tailwind CSS + Custom CSS |
+| **Routing**            | React Router DOM          |
+| **State Management**   | React Context API         |
+| **API**                | TMDB (The Movie Database) |
+| **HTTP Client**        | Axios                     |
 
 ---
 
@@ -113,7 +117,6 @@ Open `src/api/tmdb.js` and add your key:
 ```javascript
 // src/api/tmdb.js
 export const API_KEY = "YOUR_TMDB_API_KEY_HERE";
-
 ```
 
 > **Pro Tip:** For better security, consider using an `.env` file (e.g., `VITE_TMDB_API_KEY`) instead of hardcoding credentials.
@@ -133,22 +136,22 @@ Open your browser and navigate to `http://localhost:5173`.
 
 Building Reelify provided hands-on experience with:
 
-* **API Integration:** Fetching and handling complex data from TMDB using Axios.
-* **Advanced Hooks:** Implementing `useEffect`, `useState`, and `useContext` for state management.
-* **Debouncing:** Optimizing search performance to reduce API calls.
-* **Responsive Design:** Utilizing Tailwind CSS for a seamless mobile-first approach.
-* **State Management:** Using Context API to manage the global "Bollywood" toggle state.
+- **API Integration:** Fetching and handling complex data from TMDB using Axios.
+- **Advanced Hooks:** Implementing `useEffect`, `useState`, and `useContext` for state management.
+- **Debouncing:** Optimizing search performance to reduce API calls.
+- **Responsive Design:** Utilizing Tailwind CSS for a seamless mobile-first approach.
+- **State Management:** Using Context API to manage the global "Bollywood" toggle state.
 
 ---
 
 ## 📌 Future Enhancements
 
-* [ ] User Authentication (Login/Signup)
-* [ ] Favorites / Watchlist functionality
-* [ ] Genre-based filtering
-* [ ] Pagination for search results
-* [ ] Actor profile pages
-* [ ] Dark/Light mode toggle
+- [ ] User Authentication (Login/Signup)
+- [ ] Favorites / Watchlist functionality
+- [ ] Genre-based filtering
+- [ ] Pagination for search results
+- [ ] Actor profile pages
+- [ ] Dark/Light mode toggle
 
 ---
 
@@ -156,8 +159,8 @@ Building Reelify provided hands-on experience with:
 
 **Rohit Kumar Prasad**
 
-* **BCA** (Bachelor of Computer Applications)
-* *Movie App Project – React & API Integration*
+- **BCA** (Bachelor of Computer Applications)
+- _Movie App Project – React & API Integration_
 
 ---
 

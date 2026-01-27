@@ -87,7 +87,10 @@ function MovieDetails() {
       {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="fixed top-32 left-6 z-50 bg-black/70 text-white border border-white px-4 py-2 rounded hover:bg-white hover:text-black transition"
+        className="hidden md:flex fixed top-32 left-6 z-20
+             items-center gap-2
+             bg-black/70 text-white border border-white px-4 py-2 rounded
+             hover:bg-white hover:text-black transition"
       >
         ← Back
       </button>
@@ -183,7 +186,8 @@ function MovieDetails() {
             {cast.map((actor) => (
               <div
                 key={actor.id}
-                className="group text-center transition-transform duration-300 hover:-translate-y-1"
+                onClick={() => navigate(`/actor/${actor.id}`)}
+                className="group text-center cursor-pointer transition-transform duration-300 hover:-translate-y-1"
               >
                 <div className="relative w-24 h-24 mx-auto mb-3">
                   <img

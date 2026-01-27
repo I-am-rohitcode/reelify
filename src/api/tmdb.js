@@ -82,3 +82,12 @@ export const getSimilarMovies = (id, bollywoodOnly = false) =>
   tmdb.get(`/movie/${id}/similar`, {
     params: bollywoodOnly ? bollywoodParams : {},
   });
+
+/* ================= ACTOR / PERSON ================= */
+
+export const getPersonDetails = (id) =>
+  tmdb.get(`/person/${id}`, {
+    params: { language: "en-IN" },
+  });
+
+export const getPersonMovies = (id) => tmdb.get(`/person/${id}/movie_credits`);
