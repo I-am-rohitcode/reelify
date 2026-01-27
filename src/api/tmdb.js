@@ -91,3 +91,50 @@ export const getPersonDetails = (id) =>
   });
 
 export const getPersonMovies = (id) => tmdb.get(`/person/${id}/movie_credits`);
+
+/* ================= WEB SERIES (TV SHOWS) ================= */
+
+export const getTrendingSeries = (bollywoodOnly = false) =>
+  tmdb.get("/trending/tv/week", {
+    params: bollywoodOnly ? { with_original_language: "hi", region: "IN" } : {},
+  });
+
+export const getPopularSeries = (bollywoodOnly = false) =>
+  tmdb.get("/tv/popular", {
+    params: bollywoodOnly ? { with_original_language: "hi", region: "IN" } : {},
+  });
+
+export const getTopRatedSeries = (bollywoodOnly = false) =>
+  tmdb.get("/tv/top_rated", {
+    params: bollywoodOnly ? { with_original_language: "hi", region: "IN" } : {},
+  });
+/* ================= TV SERIES DETAILS ================= */
+
+export const getSeriesDetails = (id) =>
+  tmdb.get(`/tv/${id}`, {
+    params: { language: "en-IN" },
+  });
+
+export const getSeriesSeasons = (id) =>
+  tmdb.get(`/tv/${id}`, {
+    params: { language: "en-IN" },
+  });
+
+export const getSeasonEpisodes = (seriesId, seasonNumber) =>
+  tmdb.get(`/tv/${seriesId}/season/${seasonNumber}`, {
+    params: { language: "en-IN" },
+  });
+
+export const getSeriesProviders = (id) => tmdb.get(`/tv/${id}/watch/providers`);
+/* ================= SEARCH (MOVIES + SERIES) ================= */
+
+export const searchMulti = (query, bollywoodOnly = false) =>
+  tmdb.get("/search/multi", {
+    params: {
+      query,
+      ...(bollywoodOnly && {
+        with_original_language: "hi",
+        region: "IN",
+      }),
+    },
+  });

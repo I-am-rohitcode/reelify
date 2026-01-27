@@ -6,7 +6,13 @@ function MovieCard({ movie }) {
 
   return (
     <div
-      onClick={() => navigate(`/movie/${movie.id}`)}
+      onClick={() => {
+        if (movie.media_type === "tv") {
+          navigate(`/series/${movie.id}`);
+        } else {
+          navigate(`/movie/${movie.id}`);
+        }
+      }}
       className="cursor-pointer hover:scale-105 transition"
     >
       <img
