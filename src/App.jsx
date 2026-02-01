@@ -6,6 +6,7 @@ import Search from "./pages/Search";
 import ActorDetails from "./pages/ActorDetails";
 import WebSeries from "./pages/WebSeries";
 import SeriesDetails from "./pages/SeriesDetails";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route path="/series" element={<WebSeries />} />
         <Route path="/series/:id" element={<SeriesDetails />} />
       </Routes>
+      {/* your routes / layout */}
+      <Footer />
     </div>
   );
 }

@@ -44,10 +44,10 @@ function Home() {
 
         // Pick random movie for Hero
         if (trendingResults.length > 0) {
-          const random = trendingResults[Math.floor(Math.random() * trendingResults.length)];
+          const random =
+            trendingResults[Math.floor(Math.random() * trendingResults.length)];
           setRandomMovie(random);
         }
-
       } catch (error) {
         console.error("Failed to fetch movies", error);
       } finally {
@@ -65,7 +65,6 @@ function Home() {
       <Hero movie={randomMovie} />
 
       <div className="-mt-20 relative z-10 space-y-4">
-
         <MovieGrid
           title={bollywoodOnly ? "New Bollywood Releases" : "New Releases"}
           movies={nowPlaying}
