@@ -15,41 +15,95 @@ const tmdb = axios.create({
   },
 });
 
-/* ================= COMMON FILTER ================= */
+/* ================= HELPERS ================= */
 
-const bollywoodParams = {
-  with_original_language: "hi",
-  region: "IN",
+const getTodayDate = () => new Date().toISOString().split("T")[0];
+
+const getOneMonthAgoDate = () => {
+  const date = new Date();
+  date.setMonth(date.getMonth() - 1);
+  return date.toISOString().split("T")[0];
+};
+
+const getFutureDate = () => {
+  const date = new Date();
+  date.setMonth(date.getMonth() + 3);
+  return date.toISOString().split("T")[0];
 };
 
 /* ================= HOME LISTS ================= */
 
-export const getTrendingMovies = (bollywoodOnly = false) =>
-  tmdb.get("/trending/movie/week", {
-    params: bollywoodOnly ? bollywoodParams : {},
-  });
+export const getTrendingMovies = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/movie", {
+      params: {
+        with_original_language: "hi",
+        sort_by: "popularity.desc",
+        region: "IN",
+      },
+    });
+  }
+  return tmdb.get("/trending/movie/week");
+};
 
-export const getPopularMovies = (bollywoodOnly = false) =>
-  tmdb.get("/movie/popular", {
-    params: bollywoodOnly ? bollywoodParams : {},
-  });
+export const getPopularMovies = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/movie", {
+      params: {
+        with_original_language: "hi",
+        sort_by: "popularity.desc",
+        region: "IN",
+      },
+    });
+  }
+  return tmdb.get("/movie/popular");
+};
 
-export const getTopRatedMovies = (bollywoodOnly = false) =>
-  tmdb.get("/movie/top_rated", {
-    params: bollywoodOnly ? bollywoodParams : {},
-  });
+export const getTopRatedMovies = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/movie", {
+      params: {
+        with_original_language: "hi",
+        sort_by: "vote_average.desc",
+        "vote_count.gte": 100,
+        region: "IN",
+      },
+    });
+  }
+  return tmdb.get("/movie/top_rated");
+};
 
 /* ================= UPCOMING & NOW PLAYING ================= */
 
-export const getUpcomingMovies = (bollywoodOnly = false) =>
-  tmdb.get("/movie/upcoming", {
-    params: bollywoodOnly ? bollywoodParams : {},
-  });
+export const getUpcomingMovies = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/movie", {
+      params: {
+        with_original_language: "hi",
+        region: "IN",
+        "primary_release_date.gte": getTodayDate(),
+        "primary_release_date.lte": getFutureDate(),
+        sort_by: "popularity.desc",
+      },
+    });
+  }
+  return tmdb.get("/movie/upcoming", { params: { region: "IN" } });
+};
 
-export const getNowPlayingMovies = (bollywoodOnly = false) =>
-  tmdb.get("/movie/now_playing", {
-    params: bollywoodOnly ? bollywoodParams : {},
-  });
+export const getNowPlayingMovies = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/movie", {
+      params: {
+        with_original_language: "hi",
+        region: "IN",
+        "primary_release_date.gte": getOneMonthAgoDate(),
+        "primary_release_date.lte": getTodayDate(),
+        sort_by: "popularity.desc",
+      },
+    });
+  }
+  return tmdb.get("/movie/now_playing", { params: { region: "IN" } });
+};
 
 /* ================= SEARCH ================= */
 
@@ -57,13 +111,21 @@ export const searchMovies = (query, bollywoodOnly = false) =>
   tmdb.get("/search/movie", {
     params: {
       query,
-      ...(bollywoodOnly ? bollywoodParams : {}),
+      include_adult: false,
+      ...(bollywoodOnly
+        ? {
+          // Search doesn't strictly support filtering by original language in the same way,
+          // but we can try region. However, client-side filtering might be better for search results if strictly needed.
+          // For now, let's trust the query + region hint.
+          region: "IN",
+          // with_original_language is NOT supported on /search/movie
+        }
+        : {}),
     },
   });
 
 /* ================= MOVIE DETAILS ================= */
 
-/* Details itself cannot be filtered, it’s a single movie */
 export const getMovieDetails = (id) =>
   tmdb.get(`/movie/${id}`, {
     params: {
@@ -77,11 +139,11 @@ export const getMovieVideos = (id) => tmdb.get(`/movie/${id}/videos`);
 
 /* ================= SIMILAR MOVIES ================= */
 
-/* IMPORTANT: Similar movies MUST be filtered manually */
-export const getSimilarMovies = (id, bollywoodOnly = false) =>
-  tmdb.get(`/movie/${id}/similar`, {
-    params: bollywoodOnly ? bollywoodParams : {},
-  });
+export const getSimilarMovies = (id, bollywoodOnly = false) => {
+  // Similar movies endpoint does not support filtering by language directly
+  // Returning standard similar movies.
+  return tmdb.get(`/movie/${id}/similar`);
+};
 
 /* ================= ACTOR / PERSON ================= */
 
@@ -94,20 +156,46 @@ export const getPersonMovies = (id) => tmdb.get(`/person/${id}/movie_credits`);
 
 /* ================= WEB SERIES (TV SHOWS) ================= */
 
-export const getTrendingSeries = (bollywoodOnly = false) =>
-  tmdb.get("/trending/tv/week", {
-    params: bollywoodOnly ? { with_original_language: "hi", region: "IN" } : {},
-  });
+export const getTrendingSeries = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/tv", {
+      params: {
+        with_original_language: "hi",
+        sort_by: "popularity.desc",
+        region: "IN", // useful for availability
+      },
+    });
+  }
+  return tmdb.get("/trending/tv/week");
+};
 
-export const getPopularSeries = (bollywoodOnly = false) =>
-  tmdb.get("/tv/popular", {
-    params: bollywoodOnly ? { with_original_language: "hi", region: "IN" } : {},
-  });
+export const getPopularSeries = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/tv", {
+      params: {
+        with_original_language: "hi",
+        sort_by: "popularity.desc",
+        region: "IN",
+      },
+    });
+  }
+  return tmdb.get("/tv/popular");
+};
 
-export const getTopRatedSeries = (bollywoodOnly = false) =>
-  tmdb.get("/tv/top_rated", {
-    params: bollywoodOnly ? { with_original_language: "hi", region: "IN" } : {},
-  });
+export const getTopRatedSeries = (bollywoodOnly = false) => {
+  if (bollywoodOnly) {
+    return tmdb.get("/discover/tv", {
+      params: {
+        with_original_language: "hi",
+        sort_by: "vote_average.desc",
+        "vote_count.gte": 50,
+        region: "IN",
+      },
+    });
+  }
+  return tmdb.get("/tv/top_rated");
+};
+
 /* ================= TV SERIES DETAILS ================= */
 
 export const getSeriesDetails = (id) =>
@@ -126,15 +214,16 @@ export const getSeasonEpisodes = (seriesId, seasonNumber) =>
   });
 
 export const getSeriesProviders = (id) => tmdb.get(`/tv/${id}/watch/providers`);
+
 /* ================= SEARCH (MOVIES + SERIES) ================= */
 
 export const searchMulti = (query, bollywoodOnly = false) =>
   tmdb.get("/search/multi", {
     params: {
       query,
-      ...(bollywoodOnly && {
-        with_original_language: "hi",
-        region: "IN",
-      }),
+      include_adult: false,
+      region: "IN",
+      // search/multi does not support with_original_language
     },
   });
+

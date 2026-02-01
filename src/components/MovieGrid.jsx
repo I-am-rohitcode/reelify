@@ -1,9 +1,11 @@
 import MovieCard from "./MovieCard";
 
 function MovieGrid({ title, movies }) {
+  if (!movies || movies.length === 0) return null;
+
   return (
-    <section className="mb-10">
-      <h2 className="text-xl font-semibold mb-4 border-l-4 border-red-600 pl-3">
+    <div className="mb-8 p-4 md:pl-8 group">
+      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-white">
         {title}
       </h2>
 
@@ -12,7 +14,8 @@ function MovieGrid({ title, movies }) {
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-    </section>
+    </div>
+
   );
 }
 

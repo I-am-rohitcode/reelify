@@ -17,12 +17,13 @@ function MovieCard({ movie }) {
     >
       <img
         src={
+
           movie.poster_path
-            ? IMG_URL + movie.poster_path
+            ? `${IMG_URL}${movie.poster_path}`
             : "https://via.placeholder.com/300x450"
         }
-        className="rounded"
-        alt={movie.title}
+        alt={movie.title || movie.name}
+        className={`rounded`}
       />
       <p className="mt-2 text-sm font-semibold">{movie.title}</p>
       <p
@@ -37,12 +38,14 @@ function MovieCard({ movie }) {
       <p className="text-xs text-gray-400 mt-1">
         {movie.release_date
           ? new Date(movie.release_date).toLocaleDateString("en-IN", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })
           : "Release date unknown"}
       </p>
+
+      {/* Title overlay on hover could go here, but Netflix keeps it clean. */}
     </div>
   );
 }

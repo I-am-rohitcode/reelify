@@ -70,7 +70,7 @@ function Navbar() {
             placeholder="Search movies or series..."
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value.trim());
+              setQuery(e.target.value);
               navigate("/search");
             }}
             className="bg-gray-900 border border-gray-700 text-white px-4 py-2
@@ -135,7 +135,7 @@ function Navbar() {
             placeholder="Search..."
             value={query}
             onChange={(e) => {
-              setQuery(e.target.value.trim());
+              setQuery(e.target.value);
               navigate("/search");
             }}
             className="bg-gray-900 border border-gray-700 text-white px-4 py-2
