@@ -2,11 +2,18 @@ import axios from "axios";
 
 /* ================= CONFIG ================= */
 
-export const API_KEY = "f9288a8084a1fca84bbc18c781be67e2";
+export const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 export const BASE_URL = "https://api.themoviedb.org/3";
 
 export const IMG_URL = "https://image.tmdb.org/t/p/w500";
 export const BACKDROP_URL = "https://image.tmdb.org/t/p/original";
+
+if (!API_KEY) {
+  // eslint-disable-next-line no-console
+  console.warn(
+    "Missing VITE_TMDB_API_KEY. Create a .env file (see .env.example) to enable TMDB requests.",
+  );
+}
 
 const tmdb = axios.create({
   baseURL: BASE_URL,
@@ -137,7 +144,9 @@ export const getMovieCredits = (id) => tmdb.get(`/movie/${id}/credits`);
 
 export const getMovieVideos = (id) => tmdb.get(`/movie/${id}/videos`);
 
-/* ================= SIMILAR MOVIES ================= */
+/* ================= SIMILAR MOVIES & REVIEWS ================= */
+
+export const getMovieReviews = (id) => tmdb.get(`/movie/${id}/reviews`);
 
 export const getSimilarMovies = (id, bollywoodOnly = false) => {
   // Similar movies endpoint does not support filtering by language directly

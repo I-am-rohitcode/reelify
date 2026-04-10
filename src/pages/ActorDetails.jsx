@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getPersonDetails, getPersonMovies, IMG_URL } from "../api/tmdb";
+import { FaArrowLeft } from "react-icons/fa";
 import Loader from "../components/Loader";
-import MovieCard from "../components/MovieCard";
+import MovieGrid from "../components/MovieGrid";
 
 function ActorDetails() {
   const { id } = useParams();
@@ -23,7 +24,7 @@ function ActorDetails() {
         ]);
 
         setActor(a.data);
-        setMovies(m.data.cast.slice(0, 12));
+        setMovies(m.data.cast);
       } catch (err) {
         console.error(err);
       } finally {
@@ -36,92 +37,67 @@ function ActorDetails() {
   }, [id]);
 
   if (loading) return <Loader />;
-  if (!actor) return <p className="p-6">Actor not found</p>;
+  if (!actor) return <div className="text-center p-20 text-xl text-gray-400">Actor not found.</div>;
 
   return (
-    <div className="px-6 py-10">
+    <div className="min-h-screen bg-[#050505] text-white font-sans pt-24 pb-12 selection:bg-[#E50914]/40">
       <button
-        onClick={() => navigate(-1)}
-        className="hidden md:flex fixed top-32 left-6 z-20
-             items-center gap-2
-             bg-black/70 text-white border border-white px-4 py-2 rounded
-             hover:bg-white hover:text-black transition"
-      >
-        ← Back
-      </button>
+  onClick={() => navigate(-1)}
+  className="hidden md:flex fixed top-24 left-6 lg:left-10 z-50 items-center gap-2 px-5 py-2.5 rounded-full glass-panel hover:bg-white/10 transition-colors shadow-lg shadow-black/50 text-sm font-medium"
+>
+  <FaArrowLeft /> Back
+</button>
 
-      <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 shadow-2xl">
-        {/* Decorative background glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(220,38,38,0.25),transparent_60%)]"></div>
-
-        <div className="relative flex flex-col md:flex-row gap-10 p-8">
-          {/* Actor Image */}
-          <div className="flex-shrink-0 mx-auto md:mx-0">
-            <div className="relative">
-              <img
-                src={
-                  actor.profile_path
-                    ? IMG_URL + actor.profile_path
-                    : "https://via.placeholder.com/300"
-                }
-                alt={actor.name}
-                className="w-60 h-80 object-cover rounded-xl shadow-xl border border-gray-700"
-              />
-
-              {/* Glow ring */}
-              <div className="absolute inset-0 rounded-xl ring-2 ring-red-600/40 pointer-events-none"></div>
-            </div>
+      <div className="max-w-[1600px] mx-auto animate-fade-in-up">
+        <div className="flex flex-col md:flex-row gap-8 lg:gap-16 items-start px-6 md:px-12 lg:px-16 mb-20 pt-10">
+          
+          {/* Actor Headshot */}
+          <div className="flex-none w-[200px] md:w-[280px] mx-auto md:mx-0">
+            <img
+              src={actor.profile_path ? IMG_URL + actor.profile_path : "https://via.placeholder.com/300x450?text=No+Photo"}
+              alt={actor.name}
+              className="w-full h-auto rounded-xl shadow-[0_20px_50px_rgba(229,9,20,0.2)] object-cover"
+            />
           </div>
 
           {/* Actor Info */}
-          <div className="flex-1 text-center md:text-left">
-            <h1 className="text-4xl font-extrabold tracking-tight mb-3">
-              {actor.name}
+          <div className="flex-1 space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-md">
+               {actor.name}
             </h1>
-
-            {/* Meta Info */}
-            <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-6 text-sm">
-              {actor.birthday && (
-                <span className="px-4 py-1 rounded-full bg-gray-800 text-gray-300 border border-gray-700">
-                  🎂 {actor.birthday}
-                </span>
-              )}
-
-              {actor.place_of_birth && (
-                <span className="px-4 py-1 rounded-full bg-gray-800 text-gray-300 border border-gray-700">
-                  📍 {actor.place_of_birth}
-                </span>
-              )}
-
-              {actor.known_for_department && (
-                <span className="px-4 py-1 rounded-full bg-red-600/20 text-red-400 border border-red-600/40">
-                  🎬 {actor.known_for_department}
-                </span>
-              )}
+            
+            <div className="flex flex-wrap items-center gap-4 text-sm md:text-base font-medium">
+               {actor.known_for_department && (
+                 <span className="bg-[#E50914] px-4 py-1.5 rounded font-bold shadow-md">
+                   {actor.known_for_department}
+                 </span>
+               )}
+               {actor.birthday && (
+                 <span className="text-gray-300 glass-panel px-3 py-1.5 rounded-md">
+                   Born: {actor.birthday}
+                 </span>
+               )}
+               {actor.place_of_birth && (
+                 <span className="text-gray-400">{actor.place_of_birth}</span>
+               )}
             </div>
 
-            {/* Biography */}
-            <p className="text-gray-300 leading-relaxed max-w-3xl mx-auto md:mx-0">
-              {actor.biography
-                ? actor.biography
-                : "Biography not available for this actor yet."}
-            </p>
+            <div className="pt-4">
+               <h3 className="text-xl md:text-2xl font-bold mb-4 border-b border-gray-800 pb-2">Biography</h3>
+               <p className="text-gray-300 text-sm md:text-base leading-relaxed font-light">
+                  {actor.biography || "No biography available for this actor."}
+               </p>
+            </div>
           </div>
         </div>
+
+        {/* Movies Row */}
+        {movies.length > 0 && (
+          <div className="-mx-4 md:mx-0">
+             <MovieGrid title={`Known For`} movies={movies} />
+          </div>
+        )}
       </div>
-
-      {/* Actor Movies */}
-      {movies.length > 0 && (
-        <div className="mt-12">
-          <h2 className="text-xl font-semibold mb-4">Movies by {actor.name}</h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
-            {movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

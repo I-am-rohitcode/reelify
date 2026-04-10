@@ -8,7 +8,9 @@ import { BollywoodProvider } from "./context/BollywoodContext";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <BollywoodProvider>
-      <App />
+      <div id="content">
+        <App />
+      </div>
     </BollywoodProvider>
   </BrowserRouter>,
 );

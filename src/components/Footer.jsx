@@ -1,15 +1,17 @@
 function Footer() {
   return (
-    <footer className="bg-black text-gray-400 mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <footer className="mt-20 border-t border-white/10 bg-ink-950/40 backdrop-blur">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 md:px-12 lg:px-16 py-12">
         {/* Top section */}
         <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* Brand */}
           <div>
-            <h1 className="text-red-500 text-3xl font-semibold">Reelify</h1>
-            <p className="mt-2 text-sm max-w-xs">
-              Discover movies and web series. Built with React, Tailwind, and
-              TMDB.
+            <h1 className="font-display tracking-widest text-2xl text-white">
+              REELIFY
+            </h1>
+            <p className="mt-3 text-sm max-w-sm text-gray-300 leading-relaxed">
+              A neo-noir discovery experience for movies and series. Fast search,
+              curated rows, and detail pages powered by TMDB.
             </p>
 
             {/* Social Icons */}
@@ -19,7 +21,7 @@ function Footer() {
                 href="https://www.facebook.com/profile.php?id=100014727486421"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition"
+                className="text-gray-300 hover:text-white transition focus-ring rounded-md"
                 aria-label="Facebook"
               >
                 <svg
@@ -36,7 +38,7 @@ function Footer() {
                 href="https://instagram.com/rohi.t6460"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition"
+                className="text-gray-300 hover:text-white transition focus-ring rounded-md"
                 aria-label="Instagram"
               >
                 <svg
@@ -53,7 +55,7 @@ function Footer() {
                 href="https://github.com/I-am-rohitcode"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white transition"
+                className="text-gray-300 hover:text-white transition focus-ring rounded-md"
                 aria-label="GitHub"
               >
                 <svg
@@ -69,9 +71,11 @@ function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-gray-800 mt-8 pt-6 text-sm flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t border-white/10 mt-10 pt-6 text-sm flex flex-col sm:flex-row justify-between items-center gap-4 text-gray-400">
           <p>© {new Date().getFullYear()} Reelify. All rights reserved.</p>
-          <p className="text-gray-500">Data provided by TMDB</p>
+          <p className="text-gray-500">
+            Data provided by TMDB
+          </p>
         </div>
       </div>
     </footer>

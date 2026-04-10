@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen text-white grainy">
       <Navbar />
 
       <Routes>
@@ -21,7 +21,6 @@ function App() {
         <Route path="/series" element={<WebSeries />} />
         <Route path="/series/:id" element={<SeriesDetails />} />
       </Routes>
-      {/* your routes / layout */}
       <Footer />
     </div>
   );

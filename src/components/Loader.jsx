@@ -1,7 +1,7 @@
 function Loader() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="flex flex-col items-center gap-6">
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="flex flex-col items-center gap-6 glass-panel rounded-3xl px-10 py-10 shadow-glow border border-white/10">
         <img
           src="/Icon.png"
           alt="Reelify"
@@ -9,8 +9,8 @@ function Loader() {
           style={{ filter: "drop-shadow(2px 4px 6px black)" }}
         />
 
-        <p className="text-gray-400 text-sm tracking-wide">
-          Loading movie details...
+        <p className="text-gray-200 text-sm tracking-wide">
+          Loading…
         </p>
       </div>
     </div>

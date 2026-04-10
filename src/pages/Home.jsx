@@ -61,10 +61,10 @@ function Home() {
   if (loading) return <Loader />;
 
   return (
-    <div className="bg-[#141414] min-h-screen pb-10">
+    <div className="bg-[#050505] min-h-screen pb-10">
       <Hero movie={randomMovie} />
 
-      <div className="-mt-20 relative z-10 space-y-4">
+      <div className="-mt-16 md:-mt-32 lg:-mt-48 relative z-10 space-y-4 md:space-y-8">
         <MovieGrid
           title={bollywoodOnly ? "New Bollywood Releases" : "New Releases"}
           movies={nowPlaying}
