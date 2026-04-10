@@ -7,7 +7,11 @@ function Footer() {
           {/* Brand */}
           <div>
             <h1 className="font-display tracking-widest text-2xl text-white">
-              REELIFY
+              <img
+                src="/Logo.png"
+                alt="Reelify"
+                className="h-20 md:h-24 object-contain"
+              />
             </h1>
             <p className="mt-3 text-sm max-w-sm text-gray-300 leading-relaxed">
               A neo-noir discovery experience for movies and series. Fast search,
