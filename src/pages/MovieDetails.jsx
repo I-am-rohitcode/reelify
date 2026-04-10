@@ -65,14 +65,14 @@ function MovieDetails() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-purple-600/40">
-      
+
       {/* Floating Back Button */}
       <button
-  onClick={() => navigate(-1)}
-  className="hidden md:flex fixed top-24 left-6 lg:left-10 z-50 items-center gap-2 px-5 py-2.5 rounded-full glass-panel hover:bg-white/10 transition-colors shadow-lg shadow-black/50 text-sm font-medium"
->
-  <FaArrowLeft /> Back
-</button>
+        onClick={() => navigate(-1)}
+        className="hidden md:flex fixed top-24 left-6 lg:left-10 z-50 items-center gap-2 px-5 py-2.5 rounded-full glass-panel hover:bg-white/10 transition-colors shadow-lg shadow-black/50 text-sm font-medium"
+      >
+        <FaArrowLeft /> Back
+      </button>
 
       {/* Hero Banner Section */}
       <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
@@ -88,9 +88,9 @@ function MovieDetails() {
             className="w-full h-full object-cover object-top opacity-40 scale-105"
           />
         </div>
-        
+
         {/* Overlay Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent"></div>*/}
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/40 via-transparent to-[#050505] hidden md:block"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/30 to-purple-900/20 mix-blend-overlay"></div>
 
@@ -99,7 +99,7 @@ function MovieDetails() {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
             {movie.title}
           </h1>
-          
+
           <div className="flex flex-wrap items-center gap-4 text-sm md:text-base font-medium mb-6">
             <span className="flex items-center gap-1.5 text-yellow-500 bg-yellow-500/10 px-3 py-1 rounded-full border border-yellow-500/20 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
               <FaStar /> {movie.vote_average ? movie.vote_average.toFixed(1) : "NR"}
@@ -146,7 +146,7 @@ function MovieDetails() {
 
       {/* Main Details Body */}
       <div className="px-6 md:px-16 lg:px-24 py-12 max-w-[1600px] mx-auto space-y-20">
-        
+
         {/* Overview Row: Split layout for large screens */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 animate-fade-in-up delay-100">
           <div className="lg:col-span-2 space-y-6">
@@ -176,10 +176,10 @@ function MovieDetails() {
                 <p className="font-medium">
                   {movie.release_date
                     ? new Date(movie.release_date).toLocaleDateString("en-IN", {
-                        day: "numeric",
-                        month: "long",
-                        year: "numeric",
-                      })
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })
                     : "Unknown"}
                 </p>
               </div>
@@ -206,7 +206,7 @@ function MovieDetails() {
               <span>Top Cast</span>
               <button className="text-sm text-indigo-400 hover:text-indigo-300 font-medium transition">See all</button>
             </h2>
-            
+
             <div className="flex gap-6 overflow-x-auto pb-6 no-scrollbar snap-x">
               {cast.map((actor) => (
                 <div
