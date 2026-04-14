@@ -14,7 +14,7 @@ function Hero({ movie }) {
   };
 
   return (
-    <section className="relative w-full h-[75vh] md:h-[90vh] lg:h-[95vh] overflow-hidden">
+    <section className="relative w-full h-[75vh] md:h-[90vh] lg:h-[95vh] overflow-hidden ">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
