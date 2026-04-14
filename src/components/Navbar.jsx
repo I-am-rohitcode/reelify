@@ -36,10 +36,10 @@ function Navbar() {
   }, [location.pathname]);
 
   const navLinkClass = ({ isActive }) =>
-    `relative text-sm font-medium transition-all duration-300 ${isActive
-      ? "text-white"
-      : "text-gray-300 hover:text-gray-100"
-    } after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-gradient-to-r after:from-neon-cyan after:to-neon-magenta after:transition-transform after:duration-300 ${isActive ? "after:scale-x-100" : "hover:after:scale-x-100"
+    `relative text-sm font-medium transition-all duration-300 ${
+      isActive ? "text-white" : "text-gray-300 hover:text-gray-100"
+    } after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-gradient-to-r after:from-neon-cyan after:to-neon-magenta after:transition-transform after:duration-300 ${
+      isActive ? "after:scale-x-100" : "hover:after:scale-x-100"
     }`;
 
   return (
@@ -54,21 +54,17 @@ function Navbar() {
 
       {/* Navbar background */}
       <div
-        className={`transition-all duration-500 ${isScrolled
+        className={`transition-all duration-500 ${
+          isScrolled
             ? "bg-ink-950/70 backdrop-blur-xl border-b border-white/10"
             : "bg-gradient-to-b from-ink-950/70 to-transparent"
-          }`}
+        }`}
       >
         <div className="mx-auto max-w-[1600px] px-4 md:px-12 lg:px-16 py-4">
           <div className="flex items-center justify-between gap-4">
-
             {/* LEFT SECTION */}
             <div className="flex items-center gap-10">
-              <Link
-                to="/"
-                onClick={() => setQuery("")}
-                className="rounded-2xl"
-              >
+              <Link to="/" onClick={() => setQuery("")} className="rounded-2xl">
                 <div className="flex items-center gap-3 group">
                   <img
                     src="/Logo.png"
@@ -93,7 +89,6 @@ function Navbar() {
 
             {/* RIGHT SECTION (desktop) */}
             <div className="hidden md:flex items-center gap-6">
-
               {/* Search */}
               <div className="relative group">
                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -114,25 +109,76 @@ function Navbar() {
                 <span className="text-sm text-gray-200">Bollywood</span>
                 <button
                   onClick={() => setBollywoodOnly(!bollywoodOnly)}
-                  className={`w-11 h-6 rounded-full flex items-center px-1 transition border ${bollywoodOnly
-                      ? "bg-green-400/30"
-                      : "bg-white/10"
-                    }`}
+                  className={`w-11 h-6 rounded-full flex items-center px-1 transition border ${
+                    bollywoodOnly ? "bg-green-400/30" : "bg-white/10"
+                  }`}
                 >
                   <div
-                    className={`w-4 h-4 bg-white rounded-full transition ${bollywoodOnly ? "translate-x-5" : ""
-                      }`}
+                    className={`w-4 h-4 bg-white rounded-full transition ${
+                      bollywoodOnly ? "translate-x-5" : ""
+                    }`}
                   />
                 </button>
               </div>
 
               {/* Profile Avatar (FIXED) */}
-              <div className="w-9 h-9 rounded-full overflow-hidden cursor-pointer border border-white/10 hover:border-neon-cyan/50 transition-all">
-                <img
-                  src={avatarImg}
-                  alt="Profile"
-                  className="h-full w-full object-cover"
-                />
+              <div className="relative group w-9 h-9">
+                {/* Avatar */}
+                <div className="w-9 h-9 rounded-full overflow-hidden cursor-pointer border border-white/10 hover:border-cyan-400 transition-all">
+                  <img
+                    src={avatarImg}
+                    alt="Profile"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
+                {/* Dropdown (fixed hover area) */}
+                <div
+                  className={`absolute right-0 top-full pt-2 hidden group-hover:flex flex-col transition-all duration-500 ${
+                    isScrolled
+                      ? "bg-ink-950/70 backdrop-blur-xl border-b border-white/10"
+                      : "bg-gradient-to-b from-ink-950/70 to-transparent"
+                  } rounded-lg shadow-lg p-2 gap-2 z-50`}
+                >
+                  <a
+                    href="https://www.facebook.com/profile.php?id=100014727486421"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md text-gray-200 
+             bg-white/5 backdrop-blur-md border border-white/10
+             hover:bg-white/10 hover:border-white/20 
+             hover:text-white hover:shadow-[0_0_12px_rgba(0,255,255,0.3)]
+             transition-all duration-300"
+                  >
+                    Facebook
+                  </a>
+
+                  <a
+                    href="https://instagram.com/rohi.t6460"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md text-gray-200 
+             bg-white/5 backdrop-blur-md border border-white/10
+             hover:bg-white/10 hover:border-white/20 
+             hover:text-white hover:shadow-[0_0_12px_rgba(0,255,255,0.3)]
+             transition-all duration-300"
+                  >
+                    Instagram
+                  </a>
+
+                  <a
+                    href="https://github.com/I-am-rohitcode"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md text-gray-200 
+             bg-white/5 backdrop-blur-md border border-white/10
+             hover:bg-white/10 hover:border-white/20 
+             hover:text-white hover:shadow-[0_0_12px_rgba(0,255,255,0.3)]
+             transition-all duration-300"
+                  >
+                    GitHub
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -161,7 +207,7 @@ function Navbar() {
             <div className="absolute top-3 left-3 right-3 rounded-3xl glass-panel shadow-glow border border-white/10 overflow-hidden">
               <div className="px-4 py-4 flex items-center justify-between">
                 <span className="font-display tracking-widest text-white/90">
-                <img
+                  <img
                     src="/Logo.png"
                     alt="Reelify"
                     className="h-12 md:h-18 object-contain"
