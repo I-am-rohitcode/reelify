@@ -11,10 +11,12 @@ function MovieCard({ movie }) {
       ? `${Math.round(movie.vote_average * 10)}% Match`
       : "New";
 
+  const isTvShow = movie.media_type === "tv" || (!movie.media_type && (movie.first_air_date || movie.name));
+
   return (
     <div
       onClick={() => {
-        if (movie.media_type === "tv") {
+        if (isTvShow) {
           navigate(`/series/${movie.id}`);
         } else {
           navigate(`/movie/${movie.id}`);
@@ -26,7 +28,7 @@ function MovieCard({ movie }) {
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
-          if (movie.media_type === "tv") navigate(`/series/${movie.id}`);
+          if (isTvShow) navigate(`/series/${movie.id}`);
           else navigate(`/movie/${movie.id}`);
         }
       }}

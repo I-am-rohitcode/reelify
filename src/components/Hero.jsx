@@ -8,8 +8,9 @@ function Hero({ movie }) {
   if (!movie) return null;
 
   const handleNavigate = () => {
+    const isTvShow = movie.media_type === "tv" || (!movie.media_type && (movie.first_air_date || movie.name));
     navigate(
-      movie.media_type === "tv" ? `/series/${movie.id}` : `/movie/${movie.id}`,
+      isTvShow ? `/series/${movie.id}` : `/movie/${movie.id}`,
     );
   };
 
