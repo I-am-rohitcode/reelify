@@ -4,12 +4,17 @@ export const getGeminiApiKey = () => {
   const localKey = (localStorage.getItem("reelify_gemini_key") || "").trim();
   const envKey = (import.meta.env.VITE_GEMINI_API_KEY || "").trim();
 
-  // Prioritize local storage key if it's present and starts with standard Google API prefix
-  if (localKey && localKey.startsWith("AIzaSy")) {
+  // Helper to validate Google API key formats (legacy AIzaSy or new AQ. format)
+  const isValidFormat = (key) => {
+    return key && (key.startsWith("AIzaSy") || key.startsWith("AQ."));
+  };
+
+  // Prioritize local storage key if it's present and valid
+  if (isValidFormat(localKey)) {
     return localKey;
   }
-  // Fallback to env key if it starts with standard Google API prefix
-  if (envKey && envKey.startsWith("AIzaSy")) {
+  // Fallback to env key if it is valid
+  if (isValidFormat(envKey)) {
     return envKey;
   }
   return "";

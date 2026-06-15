@@ -45,7 +45,7 @@ function Chatbot() {
       localStorage.setItem("reelify_gemini_key", cleanKey);
       setApiKey(cleanKey);
       
-      const isValidFormat = cleanKey.startsWith("AIzaSy");
+      const isValidFormat = cleanKey.startsWith("AIzaSy") || cleanKey.startsWith("AQ.");
       
       // Add a system feedback message
       setMessages((prev) => [
@@ -211,7 +211,10 @@ function Chatbot() {
     navigate(isTv ? `/series/${movie.id}` : `/movie/${movie.id}`);
   };
 
-  const isEnvKeyConfigured = !!import.meta.env.VITE_GEMINI_API_KEY && import.meta.env.VITE_GEMINI_API_KEY.trim().startsWith("AIzaSy");
+  const isEnvKeyConfigured = !!import.meta.env.VITE_GEMINI_API_KEY && (
+    import.meta.env.VITE_GEMINI_API_KEY.trim().startsWith("AIzaSy") || 
+    import.meta.env.VITE_GEMINI_API_KEY.trim().startsWith("AQ.")
+  );
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pt-20 flex flex-col md:flex-row font-sans overflow-hidden">
