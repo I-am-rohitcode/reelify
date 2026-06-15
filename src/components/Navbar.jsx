@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaFacebookF, FaInstagram, FaGithub } from "react-icons/fa";
 import { useBollywood } from "../context/BollywoodContext";
 import avatarImg from "../assets/img.jpg";
 
@@ -134,52 +134,54 @@ useEffect(() => {
                   />
                 </div>
 
-                {/* Dropdown (fixed hover area) */}
+                {/* Dropdown (fixed hover area with transparent bridge) */}
                 <div
-                  className={`absolute right-0 top-full pt-2 hidden group-hover:flex flex-col transition-all duration-500 ${
-                    isScrolled
-                      ? "bg-ink-950/70 backdrop-blur-xl border-b border-white/10"
-                      : "bg-gradient-to-b from-ink-950/70 to-transparent"
-                  } rounded-lg shadow-lg p-2 gap-2 z-50`}
+                  className="absolute right-0 top-full pt-3 hidden group-hover:flex flex-col z-50"
                 >
-                  <a
-                    href="https://www.facebook.com/profile.php?id=100014727486421"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-gray-200 
-             bg-white/5 backdrop-blur-md border border-white/10
-             hover:bg-white/10 hover:border-white/20 
-             hover:text-white hover:shadow-[0_0_12px_rgba(0,255,255,0.3)]
-             transition-all duration-300"
+                  <div
+                    className={`w-48 rounded-xl shadow-2xl border border-white/10 p-3 gap-1.5 flex flex-col backdrop-blur-xl transition-all duration-300 ${
+                      isScrolled
+                        ? "bg-[#0d0d11]/95"
+                        : "bg-[#0d0d11]/85"
+                    }`}
                   >
-                    Facebook
-                  </a>
+                    {/* Header */}
+                    <div className="px-2 pb-1.5 mb-1 border-b border-white/5">
+                      <p className="text-[10px] font-bold tracking-widest text-gray-400 uppercase">
+                        Developer
+                      </p>
+                    </div>
 
-                  <a
-                    href="https://instagram.com/rohi.t6460"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-gray-200 
-             bg-white/5 backdrop-blur-md border border-white/10
-             hover:bg-white/10 hover:border-white/20 
-             hover:text-white hover:shadow-[0_0_12px_rgba(0,255,255,0.3)]
-             transition-all duration-300"
-                  >
-                    Instagram
-                  </a>
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100014727486421"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs text-gray-300 hover:text-white bg-white/5 hover:bg-[#1877F2]/10 hover:shadow-[0_0_15px_rgba(24,119,242,0.2)] border border-white/5 hover:border-[#1877F2]/30 transition-all duration-300 group/item"
+                    >
+                      <FaFacebookF className="text-[#1877F2] text-sm group-hover/item:scale-110 transition-transform duration-300" />
+                      <span className="font-semibold">Facebook</span>
+                    </a>
 
-                  <a
-                    href="https://github.com/I-am-rohitcode"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-md text-gray-200 
-             bg-white/5 backdrop-blur-md border border-white/10
-             hover:bg-white/10 hover:border-white/20 
-             hover:text-white hover:shadow-[0_0_12px_rgba(0,255,255,0.3)]
-             transition-all duration-300"
-                  >
-                    GitHub
-                  </a>
+                    <a
+                      href="https://instagram.com/rohi.t6460"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs text-gray-300 hover:text-white bg-white/5 hover:bg-[#E4405F]/10 hover:shadow-[0_0_15px_rgba(228,64,95,0.2)] border border-white/5 hover:border-[#E4405F]/30 transition-all duration-300 group/item"
+                    >
+                      <FaInstagram className="text-[#E4405F] text-sm group-hover/item:scale-110 transition-transform duration-300" />
+                      <span className="font-semibold">Instagram</span>
+                    </a>
+
+                    <a
+                      href="https://github.com/I-am-rohitcode"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] border border-white/5 hover:border-white/20 transition-all duration-300 group/item"
+                    >
+                      <FaGithub className="text-white text-sm group-hover/item:scale-110 transition-transform duration-300" />
+                      <span className="font-semibold">GitHub</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -299,6 +301,42 @@ useEffect(() => {
                       }`}
                     />
                   </button>
+                </div>
+
+                {/* Developer Section */}
+                <div className="pt-3.5 border-t border-white/10 space-y-2">
+                  <span className="text-[10px] font-bold tracking-widest text-gray-400 uppercase block px-1">
+                    Developer
+                  </span>
+                  <div className="grid grid-cols-3 gap-2">
+                    <a
+                      href="https://www.facebook.com/profile.php?id=100014727486421"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center gap-1.5 rounded-2xl px-2 py-3 text-xs font-semibold border bg-white/5 border-white/10 text-gray-200 hover:bg-[#1877F2]/10 hover:border-[#1877F2]/30 active:bg-[#1877F2]/20 transition"
+                    >
+                      <FaFacebookF className="text-[#1877F2] text-sm" />
+                      <span>Facebook</span>
+                    </a>
+                    <a
+                      href="https://instagram.com/rohi.t6460"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center gap-1.5 rounded-2xl px-2 py-3 text-xs font-semibold border bg-white/5 border-white/10 text-gray-200 hover:bg-[#E4405F]/10 hover:border-[#E4405F]/30 active:bg-[#E4405F]/20 transition"
+                    >
+                      <FaInstagram className="text-[#E4405F] text-sm" />
+                      <span>Instagram</span>
+                    </a>
+                    <a
+                      href="https://github.com/I-am-rohitcode"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-col items-center justify-center gap-1.5 rounded-2xl px-2 py-3 text-xs font-semibold border bg-white/5 border-white/10 text-gray-200 hover:bg-white/10 hover:border-white/20 active:bg-white/20 transition"
+                    >
+                      <FaGithub className="text-white text-sm" />
+                      <span>GitHub</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

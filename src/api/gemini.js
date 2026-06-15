@@ -1,10 +1,18 @@
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
-/**
- * Gets the Gemini API key from environment variables or local storage fallback.
- */
 export const getGeminiApiKey = () => {
-  return import.meta.env.VITE_GEMINI_API_KEY || localStorage.getItem("reelify_gemini_key") || "";
+  const localKey = (localStorage.getItem("reelify_gemini_key") || "").trim();
+  const envKey = (import.meta.env.VITE_GEMINI_API_KEY || "").trim();
+
+  // Prioritize local storage key if it's present and starts with standard Google API prefix
+  if (localKey && localKey.startsWith("AIzaSy")) {
+    return localKey;
+  }
+  // Fallback to env key if it starts with standard Google API prefix
+  if (envKey && envKey.startsWith("AIzaSy")) {
+    return envKey;
+  }
+  return "";
 };
 
 /**

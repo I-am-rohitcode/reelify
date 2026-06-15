@@ -45,13 +45,17 @@ function Chatbot() {
       localStorage.setItem("reelify_gemini_key", cleanKey);
       setApiKey(cleanKey);
       
+      const isValidFormat = cleanKey.startsWith("AIzaSy");
+      
       // Add a system feedback message
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now().toString(),
           role: "assistant",
-          text: "🔑 API Key saved successfully! How can I assist you with movies today?",
+          text: isValidFormat 
+            ? "🔑 API Key saved successfully! How can I assist you with movies today?"
+            : "⚠️ API Key saved! However, it doesn't seem to be a valid Gemini API Key (which typically starts with **'AIzaSy'**). If the chatbot fails to respond, please check your key.",
         },
       ]);
     }
@@ -207,7 +211,7 @@ function Chatbot() {
     navigate(isTv ? `/series/${movie.id}` : `/movie/${movie.id}`);
   };
 
-  const isEnvKeyConfigured = !!import.meta.env.VITE_GEMINI_API_KEY;
+  const isEnvKeyConfigured = !!import.meta.env.VITE_GEMINI_API_KEY && import.meta.env.VITE_GEMINI_API_KEY.trim().startsWith("AIzaSy");
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pt-20 flex flex-col md:flex-row font-sans overflow-hidden">

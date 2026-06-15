@@ -82,12 +82,16 @@ function FloatingChatbot() {
       setApiKey(cleanKey);
       setShowKeySettings(false);
 
+      const isValidFormat = cleanKey.startsWith("AIzaSy");
+
       setMessages((prev) => [
         ...prev,
         {
           id: Date.now().toString(),
           role: "assistant",
-          text: "🔑 API Key saved! Ask me about any movie.",
+          text: isValidFormat
+            ? "🔑 API Key saved! Ask me about any movie."
+            : "⚠️ API Key saved! However, it doesn't seem to be a valid Gemini API Key (which typically starts with **'AIzaSy'**). If the chatbot fails to respond, please check your key.",
           timestamp: new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
@@ -255,7 +259,7 @@ function FloatingChatbot() {
     setIsOpen(false);
   };
 
-  const isEnvKeyConfigured = !!import.meta.env.VITE_GEMINI_API_KEY;
+  const isEnvKeyConfigured = !!import.meta.env.VITE_GEMINI_API_KEY && import.meta.env.VITE_GEMINI_API_KEY.trim().startsWith("AIzaSy");
 
   return (
     <>
