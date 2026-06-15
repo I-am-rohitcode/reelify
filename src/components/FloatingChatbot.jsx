@@ -345,7 +345,7 @@ function FloatingChatbot() {
               <span className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
                 <FaKey className="text-red-500 text-[10px]" /> Gemini API Key
               </span>
-              <button
+              {/*<button
                 onClick={() => {
                   if (window.confirm("Clear chat history?")) {
                     setMessages([
@@ -364,7 +364,7 @@ function FloatingChatbot() {
                 className="text-[10px] text-red-400 hover:text-red-300 flex items-center gap-1 font-semibold"
               >
                 <FaTrash className="text-[9px]" /> Clear Chat
-              </button>
+              </button>*/}
             </div>
 
             {isEnvKeyConfigured ? (
