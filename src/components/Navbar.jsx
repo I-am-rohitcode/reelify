@@ -199,11 +199,10 @@ useEffect(() => {
         {menuOpen && (
           <div className="md:hidden fixed inset-0 z-[60]">
             {/* overlay */}
-            <button
-              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-              onClick={() => setMenuOpen(false)}
-              aria-label="Close menu overlay"
-            />
+            <div
+  className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+  onClick={() => setMenuOpen(false)}
+/>
 
             {/* sheet */}
             <div className="absolute top-3 left-3 right-3 rounded-3xl glass-panel shadow-glow border border-white/10 overflow-hidden">
