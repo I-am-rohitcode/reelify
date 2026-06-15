@@ -270,7 +270,7 @@ function Navbar() {
                   >
                     Web Series
                   </NavLink>
-                  <NavLink
+                  {/* <NavLink
                     to="/chatbot"
                     onClick={() => setMenuOpen(false)}
                     className={({ isActive }) =>
@@ -282,7 +282,7 @@ function Navbar() {
                     }
                   >
                     AI Chatbot
-                  </NavLink>
+                  </NavLink>*/}
                 </div>
 
                 <div className="flex items-center justify-between pt-3 border-t border-white/10">
