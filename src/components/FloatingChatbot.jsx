@@ -369,7 +369,7 @@ function FloatingChatbot() {
 
             {isEnvKeyConfigured ? (
               <div className="bg-neon-lime/10 border border-neon-lime/20 text-neon-lime text-[10px] px-2.5 py-1.5 rounded-lg">
-                Loaded securely from system settings (.env)
+                Loaded securely from system settings
               </div>
             ) : (
               <div className="space-y-2">
@@ -520,10 +520,18 @@ function FloatingChatbot() {
           {isLoading && (
             <div className="flex gap-2.5 max-w-[80%] mr-auto animate-pulse">
               <div className="w-7 h-7 rounded-full bg-neon-magenta/20 border border-neon-magenta/40 text-neon-magenta flex items-center justify-center flex-none">
-                <FaRobot className="text-[11px]" />
+                <img
+                    src="/AI_Icon.png"
+                    alt="Chatbot"
+                    className="w-8 h-8 cursor-pointer hover:scale-110 transition-transform duration-300"
+                  />
               </div>
               <div className="bg-white/5 border border-white/5 px-3 py-2.5 rounded-2xl rounded-tl-none text-gray-400 flex items-center gap-2">
-                <FaCommentDots className="animate-bounce text-neon-cyan text-xs" />
+                <img
+                    src="/AI_Icon.png"
+                    alt="Chatbot"
+                    className="w-8 h-8 cursor-pointer hover:scale-110 transition-transform duration-300"
+                  />
                 <span className="text-[11px]">Typing...</span>
               </div>
             </div>
