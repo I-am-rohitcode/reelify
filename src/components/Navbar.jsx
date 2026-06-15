@@ -32,8 +32,11 @@ function Navbar() {
 
   // Close menu on route change
   useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
+    if (menuOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setMenuOpen(false);
+    }
+  }, [location.pathname, menuOpen]);
 
   const navLinkClass = ({ isActive }) =>
     `relative text-sm font-medium transition-all duration-300 ${
@@ -84,6 +87,9 @@ function Navbar() {
                 <NavLink to="/series" className={navLinkClass}>
                   Web Series
                 </NavLink>
+                {/* <NavLink to="/chatbot" className={navLinkClass}>
+                  AI Chatbot
+                </NavLink> */}
               </div>
             </div>
 
@@ -237,12 +243,12 @@ function Navbar() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-2">
                   <NavLink
                     to="/"
                     onClick={() => setMenuOpen(false)}
                     className={({ isActive }) =>
-                      `rounded-2xl px-4 py-3 text-sm font-semibold border transition ${
+                      `rounded-2xl px-2.5 py-3 text-xs sm:text-sm font-semibold text-center border transition ${
                         isActive
                           ? "bg-white/10 border-white/20 text-white"
                           : "bg-white/5 border-white/10 text-gray-200 hover:bg-white/10"
@@ -255,7 +261,7 @@ function Navbar() {
                     to="/series"
                     onClick={() => setMenuOpen(false)}
                     className={({ isActive }) =>
-                      `rounded-2xl px-4 py-3 text-sm font-semibold border transition ${
+                      `rounded-2xl px-2.5 py-3 text-xs sm:text-sm font-semibold text-center border transition ${
                         isActive
                           ? "bg-white/10 border-white/20 text-white"
                           : "bg-white/5 border-white/10 text-gray-200 hover:bg-white/10"
@@ -263,6 +269,19 @@ function Navbar() {
                     }
                   >
                     Web Series
+                  </NavLink>
+                  <NavLink
+                    to="/chatbot"
+                    onClick={() => setMenuOpen(false)}
+                    className={({ isActive }) =>
+                      `rounded-2xl px-2.5 py-3 text-xs sm:text-sm font-semibold text-center border transition ${
+                        isActive
+                          ? "bg-white/10 border-white/20 text-white"
+                          : "bg-white/5 border-white/10 text-gray-200 hover:bg-white/10"
+                      }`
+                    }
+                  >
+                    AI Chatbot
                   </NavLink>
                 </div>
 

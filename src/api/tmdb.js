@@ -9,7 +9,6 @@ export const IMG_URL = "https://image.tmdb.org/t/p/w500";
 export const BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 
 if (!API_KEY) {
-  // eslint-disable-next-line no-console
   console.warn(
     "Missing VITE_TMDB_API_KEY. Create a .env file (see .env.example) to enable TMDB requests.",
   );
@@ -148,7 +147,7 @@ export const getMovieVideos = (id) => tmdb.get(`/movie/${id}/videos`);
 
 export const getMovieReviews = (id) => tmdb.get(`/movie/${id}/reviews`);
 
-export const getSimilarMovies = (id, bollywoodOnly = false) => {
+export const getSimilarMovies = (id) => {
   // Similar movies endpoint does not support filtering by language directly
   // Returning standard similar movies.
   return tmdb.get(`/movie/${id}/similar`);
@@ -226,7 +225,7 @@ export const getSeriesProviders = (id) => tmdb.get(`/tv/${id}/watch/providers`);
 
 /* ================= SEARCH (MOVIES + SERIES) ================= */
 
-export const searchMulti = (query, bollywoodOnly = false) =>
+export const searchMulti = (query) =>
   tmdb.get("/search/multi", {
     params: {
       query,

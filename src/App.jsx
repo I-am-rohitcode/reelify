@@ -6,6 +6,8 @@ import Search from "./pages/Search";
 import ActorDetails from "./pages/ActorDetails";
 import WebSeries from "./pages/WebSeries";
 import SeriesDetails from "./pages/SeriesDetails";
+import Chatbot from "./pages/Chatbot";
+import FloatingChatbot from "./components/FloatingChatbot";
 import Footer from "./components/Footer";
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
         <Route path="/actor/:id" element={<ActorDetails />} />
         <Route path="/series" element={<WebSeries />} />
         <Route path="/series/:id" element={<SeriesDetails />} />
+        <Route path="/chatbot" element={<Chatbot />} />
       </Routes>
+      <FloatingChatbot />
       <Footer />
     </div>
   );

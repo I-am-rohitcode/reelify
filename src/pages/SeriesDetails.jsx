@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   getSeriesDetails,
@@ -19,26 +19,51 @@ function SeriesDetails() {
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [providers, setProviders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchEpisodes = useCallback(async (season) => {
+    console.log("fetchEpisodes called for season:", season);
+    try {
+      setSelectedSeason(season);
+      const ep = await getSeasonEpisodes(id, season);
+      console.log(`getSeasonEpisodes for season ${season} success:`, ep.data);
+      setEpisodes(ep.data.episodes || []);
+    } catch (err) {
+      console.error(`Failed to fetch episodes for season ${season}:`, err);
+      setEpisodes([]);
+    }
+  }, [id]);
 
   useEffect(() => {
     const fetchSeries = async () => {
+      console.log("fetchSeries called for TV ID:", id);
       try {
         setLoading(true);
+        setError(null);
 
-        const [s, p] = await Promise.all([
-          getSeriesDetails(id),
-          getSeriesProviders(id),
-        ]);
+        const seriesRes = await getSeriesDetails(id);
+        console.log("getSeriesDetails success:", seriesRes.data);
+        setSeries(seriesRes.data);
 
-        setSeries(s.data);
+        // Fetch watch providers separately (fail-safe)
+        try {
+          const providersRes = await getSeriesProviders(id);
+          console.log("getSeriesProviders success:", providersRes.data);
+          setProviders(
+            providersRes.data.results?.IN?.flatrate ||
+              providersRes.data.results?.US?.flatrate ||
+              [],
+          );
+        } catch (providerErr) {
+          console.warn("Failed to fetch watch providers:", providerErr);
+          setProviders([]);
+        }
 
-        setProviders(
-          p.data.results?.IN?.flatrate || p.data.results?.US?.flatrate || [],
-        );
-
-        fetchEpisodes(1);
+        // Fetch season 1 episodes
+        await fetchEpisodes(1);
       } catch (err) {
-        console.error(err);
+        console.error("Failed to load series details:", err);
+        setError(err.message || "Failed to load series details");
       } finally {
         setLoading(false);
       }
@@ -46,15 +71,23 @@ function SeriesDetails() {
 
     fetchSeries();
     window.scrollTo(0, 0);
-  }, [id]);
-
-  const fetchEpisodes = async (season) => {
-    setSelectedSeason(season);
-    const ep = await getSeasonEpisodes(id, season);
-    setEpisodes(ep.data.episodes || []);
-  };
+  }, [id, fetchEpisodes]);
 
   if (loading) return <Loader />;
+  if (error) {
+    return (
+      <div className="text-center p-20 text-xl text-red-500 font-sans mt-10">
+        <p className="font-bold">Error loading series details:</p>
+        <p className="text-gray-400 text-sm mt-2">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="mt-6 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition"
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
   if (!series)
     return (
       <div className="text-center p-20 text-xl text-gray-400">
@@ -159,7 +192,7 @@ function SeriesDetails() {
               onChange={(e) => fetchEpisodes(parseInt(e.target.value))}
               className="bg-gray-900 border border-gray-700 text-white rounded px-4 py-2 text-lg font-bold outline-none hover:bg-gray-800 transition cursor-pointer"
             >
-              {series.seasons.map((s) => (
+              {series.seasons?.map((s) => (
                 <option key={s.id} value={s.season_number}>
                   Season {s.season_number}
                 </option>
