@@ -30,14 +30,10 @@ function Navbar() {
     }
   }, [query, navigate, location.pathname]);
 
-  // Close menu on route change
-  useEffect(() => {
-    if (menuOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setMenuOpen(false);
-    }
-  }, [location.pathname, menuOpen]);
-
+  // Close menu only when route changes
+useEffect(() => {
+  setMenuOpen(false);
+}, [location.pathname]);
   const navLinkClass = ({ isActive }) =>
     `relative text-sm font-medium transition-all duration-300 ${
       isActive ? "text-white" : "text-gray-300 hover:text-gray-100"
