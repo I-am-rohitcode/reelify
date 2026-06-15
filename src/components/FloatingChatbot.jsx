@@ -138,7 +138,7 @@ function FloatingChatbot() {
     setInput("");
 
     // Verify key
-    const activeKey = apiKey || import.meta.env.VITE_GEMINI_API_KEY;
+    const activeKey = apiKey;
     if (!activeKey) {
       setShowKeySettings(true);
       setMessages((prev) => [

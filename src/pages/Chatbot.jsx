@@ -100,7 +100,7 @@ function Chatbot() {
     }
 
     // Check API Key
-    const key = apiKey || import.meta.env.VITE_GEMINI_API_KEY;
+    const key = apiKey;
     if (!key) {
       setMessages((prev) => [
         ...prev,
