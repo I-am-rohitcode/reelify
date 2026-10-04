@@ -6,13 +6,17 @@ function Footer() {
         <div className="flex flex-col md:flex-row justify-between gap-8">
           {/* Brand */}
           <div>
-            <h1 className="font-display tracking-widest text-2xl text-white">
+            <div className="font-display tracking-widest text-2xl text-white">
               <img
                 src="/Logo.png"
                 alt="Reelify"
-                className="h-20 md:h-24 object-contain"
+                width="160"
+                height="96"
+                loading="lazy"
+                decoding="async"
+                className="h-20 md:h-24 w-auto object-contain"
               />
-            </h1>
+            </div>
             <p className="mt-3 text-sm max-w-sm text-gray-300 leading-relaxed">
               A neo-noir discovery experience for movies and series. Fast search,
               curated rows, and detail pages powered by TMDB.

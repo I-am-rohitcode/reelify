@@ -51,8 +51,8 @@ function SeriesDetails() {
           console.log("getSeriesProviders success:", providersRes.data);
           setProviders(
             providersRes.data.results?.IN?.flatrate ||
-              providersRes.data.results?.US?.flatrate ||
-              [],
+            providersRes.data.results?.US?.flatrate ||
+            [],
           );
         } catch (providerErr) {
           console.warn("Failed to fetch watch providers:", providerErr);

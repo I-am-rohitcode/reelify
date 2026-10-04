@@ -104,6 +104,12 @@ User Question: "${question}"`;
     return text;
   } catch (err) {
     console.error("Failed to generate response using Gemini", err);
+    if (typeof navigator !== "undefined" && !navigator.onLine) {
+      return "❌ Network Error: You are offline. Please check your internet connection.";
+    }
+    if (err.message === "Failed to fetch" || err.name === "TypeError") {
+      return "❌ Network Error: Could not reach Gemini. Please verify your internet connection.";
+    }
     return `Error: ${err.message || "Something went wrong while talking to Gemini."}`;
   }
 };

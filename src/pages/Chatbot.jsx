@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaPaperPlane, FaTrash, FaRobot, FaUser, FaKey, FaFilm, FaTv, FaStar, FaInfoCircle, FaExclamationTriangle } from "react-icons/fa";
 import { getGeminiApiKey, extractMovieTitle, generateChatResponse } from "../api/gemini";
 import { searchMulti, IMG_URL } from "../api/tmdb";
+import SEO from "../components/SEO";
+import { PRODUCTION_URL } from "../utils/slug";
 
 function Chatbot() {
   const navigate = useNavigate();
@@ -217,7 +219,13 @@ function Chatbot() {
   );
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-20 flex flex-col md:flex-row font-sans overflow-hidden">
+    <main id="content" className="min-h-screen bg-[#050505] text-white pt-20 flex flex-col md:flex-row font-sans overflow-hidden">
+      <SEO
+        title="Reelify AI - Movie & TV Series Companion | Reelify"
+        description="Ask Reelify AI for movie recommendations, trivia, ratings, actor filmography, and summaries. Powered by Gemini and TMDB."
+        canonical={`${PRODUCTION_URL}/chatbot`}
+      />
+      <h1 className="sr-only">Reelify AI Assistant</h1>
       
       {/* SIDEBAR Toggle for Mobile */}
       <div className="md:hidden flex items-center justify-between px-4 py-3 bg-[#0a0a0c] border-b border-white/5 relative z-30">
@@ -497,7 +505,7 @@ function Chatbot() {
           </p>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
