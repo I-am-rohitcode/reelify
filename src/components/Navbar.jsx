@@ -60,7 +60,7 @@ function Navbar() {
             : "bg-gradient-to-b from-ink-950/70 to-transparent"
         }`}
       >
-        <div className="mx-auto max-w-[1600px] px-4 md:px-12 lg:px-16 py-4">
+        <div className="mx-auto max-w-[1600px] px-4 md:px-12 lg:px-16 py-4 flex justify-between items-center">
           <div className="flex items-center justify-between gap-4">
             {/* LEFT SECTION */}
             <div className="flex items-center gap-10">
