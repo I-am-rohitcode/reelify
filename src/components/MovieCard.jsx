@@ -80,7 +80,7 @@ function MovieCard({ movie }) {
 
       <button
         type="button"
-        onClick={() => {
+        onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
           toggle(movie);
