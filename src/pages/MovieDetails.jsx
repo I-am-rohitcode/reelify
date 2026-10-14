@@ -213,14 +213,18 @@ function MovieDetails() {
               </span>
             )}
             {movie.runtime > 0 && (
-              <>
-                <span
-                  className="w-1.5 h-1.5 rounded-full bg-gray-500"
-                  aria-hidden="true"
-                />
-                <span className="text-gray-300">{movie.runtime} min</span>
-              </>
-            )}
+  <>
+    <span
+      className="w-1.5 h-1.5 rounded-full bg-gray-500"
+      aria-hidden="true"
+    />
+    <span className="text-gray-300">
+      {Math.floor(movie.runtime / 60) > 0 &&
+        `${Math.floor(movie.runtime / 60)}h `}
+      {movie.runtime % 60 > 0 && `${movie.runtime % 60}m`}
+    </span>
+  </>
+)}
           </div>
           <div className="flex flex-wrap gap-2 mb-8" aria-label="Movie genres">
             {movie.genres?.map((g) => (
