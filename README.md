@@ -173,6 +173,4 @@ This project is for educational purposes and uses the TMDB API but is not endors
 1.  Create a file named `README.md` in your project's root folder.
 2.  Copy the code block above.
 3.  Paste it into the file and save.
-
-**Would you like me to generate a template for the `.env` file configuration as well, to make your project more secure?**
 ```
