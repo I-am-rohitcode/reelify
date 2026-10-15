@@ -43,7 +43,7 @@ function Navbar() {
     }`;
 
   return (
-    <nav className="fixed top-0 w-full z-50">
+    <nav className="fixed top-0 w-full z-[100]">
       {/* Skip link */}
       <a
         href="#content"
@@ -65,15 +65,18 @@ function Navbar() {
             {/* LEFT SECTION */}
             <div className="flex items-center gap-10">
               <Link to="/" onClick={() => setQuery("")} className="rounded-2xl">
-                <div className="flex items-center gap-3 group">
+                <div className="flex items-center min-w-0 group">
                   <img
-                    src="/Logo.png"
-                    alt="Reelify"
-                    className="h-12 md:h-18 object-contain"
+                    src="/reelify-logo.svg"
+                    alt="Reelify — More Cinema, Worldwide"
+                    width="600"
+                    height="210"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="block h-[50px] w-auto max-w-full object-contain
+               transition-transform duration-300
+               group-hover:scale-[1.03]"
                   />
-                  {/* <span className="hidden lg:block font-bold tracking-widest text-lg text-white/90 group-hover:text-white transition">
-                    REELIFY
-                  </span> */}
                 </div>
               </Link>
 
@@ -203,7 +206,7 @@ function Navbar() {
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 z-[60]">
+        <div className="md:hidden fixed inset-0 z-[70]">
           {/* overlay */}
           <div
             className="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -271,7 +274,7 @@ function Navbar() {
                 >
                   Web Series
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   to="/watchlist"
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
@@ -283,8 +286,8 @@ function Navbar() {
                   }
                 >
                   Watchlist
-                </NavLink>
-                <NavLink
+                </NavLink> */}
+                {/* <NavLink
                   to="/mood"
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) =>
@@ -296,7 +299,7 @@ function Navbar() {
                   }
                 >
                   Mood Picker
-                </NavLink>
+                </NavLink> */}
                 {/* <NavLink
                     to="/chatbot"
                     onClick={() => setMenuOpen(false)}

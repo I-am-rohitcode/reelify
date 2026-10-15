@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Reelify — More Cinema, Worldwide</title>
+  <desc id="desc">Responsive vector logo featuring a gold film reel wrapped around a navy globe and a red Reelify wordmark.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0a0"/>
+      <stop offset=".22" stop-color="#dba73e"/>
+      <stop offset=".48" stop-color="#ffe18a"/>
+      <stop offset=".72" stop-color="#9c681b"/>
+      <stop offset="1" stop-color="#f6ce67"/>
+    </linearGradient>
+    <linearGradient id="goldLight" x1="0" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#fff4b5"/>
+      <stop offset=".48" stop-color="#f0c45b"/>
+      <stop offset="1" stop-color="#a66c1b"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102d4c"/>
+      <stop offset=".55" stop-color="#071a30"/>
+      <stop offset="1" stop-color="#0b345a"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f52b3a"/>
+      <stop offset=".45" stop-color="#c70c20"/>
+      <stop offset="1" stop-color="#6f0713"/>
+    </linearGradient>
+    <linearGradient id="redEdge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5660"/>
+      <stop offset="1" stop-color="#690613"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+      <feOffset dy="4" result="offset"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".35"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <g id="perforations" fill="#061425" stroke="#d9a943" stroke-width="1.2">
+      <rect x="-3.6" y="-8" width="7.2" height="16" rx="2"/>
+    </g>
+  </defs>
+
+  <!-- Emblem -->
+  <g transform="translate(18 18)" filter="url(#softShadow)">
+    <!-- Navy globe with gold meridians -->
+    <circle cx="230" cy="190" r="170" fill="url(#navy)" stroke="url(#gold)" stroke-width="10"/>
+    <path d="M60 190H400 M230 20V360" fill="none" stroke="url(#gold)" stroke-width="11" stroke-linecap="round"/>
+    <path d="M125 57C193 111 193 269 125 323 M335 57C267 111 267 269 335 323"
+          fill="none" stroke="url(#gold)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M92 112Q230 155 368 112 M67 245Q230 207 393 245"
+          fill="none" stroke="url(#gold)" stroke-width="9" stroke-linecap="round"/>
+
+    <!-- Front film reel ribbon -->
+    <path d="M48 271C76 246 105 222 122 187C147 137 143 80 173 39C187 19 210 14 231 25
+             C258 39 267 68 259 99C250 134 220 163 201 194C182 225 169 261 139 289
+             C113 313 80 320 53 304C36 294 34 282 48 271Z"
+          fill="url(#goldLight)" stroke="#8b5d18" stroke-width="4"/>
+    <!-- Reel holes -->
+    <g fill="url(#navy)" stroke="#a16c1c" stroke-width="3">
+      <ellipse cx="178" cy="67" rx="24" ry="29" transform="rotate(18 178 67)"/>
+      <ellipse cx="119" cy="118" rx="22" ry="26" transform="rotate(28 119 118)"/>
+      <ellipse cx="83" cy="183" rx="21" ry="25" transform="rotate(28 83 183)"/>
+    </g>
+
+    <!-- Curved strip over globe -->
+    <path d="M31 282C97 279 156 242 195 184C225 140 247 87 230 35"
+          fill="none" stroke="#07172a" stroke-width="43" stroke-linecap="round"/>
+    <path d="M31 282C97 279 156 242 195 184C225 140 247 87 230 35"
+          fill="none" stroke="url(#gold)" stroke-width="37" stroke-linecap="round"/>
+    <path d="M31 282C97 279 156 242 195 184C225 140 247 87 230 35"
+          fill="none" stroke="#07172a" stroke-width="20" stroke-linecap="round"/>
+
+    <!-- Film perforations along the curved strip -->
+    <g fill="#061425" stroke="#d5a345" stroke-width="1">
+      <rect x="37" y="266" width="7" height="13" rx="2" transform="rotate(-8 40 272)"/>
+      <rect x="55" y="264" width="7" height="13" rx="2" transform="rotate(-12 58 270)"/>
+      <rect x="74" y="258" width="7" height="13" rx="2" transform="rotate(-20 77 264)"/>
+      <rect x="94" y="248" width="7" height="13" rx="2" transform="rotate(-28 97 254)"/>
+      <rect x="113" y="234" width="7" height="13" rx="2" transform="rotate(-38 116 240)"/>
+      <rect x="132" y="216" width="7" height="13" rx="2" transform="rotate(-48 135 222)"/>
+      <rect x="149" y="195" width="7" height="13" rx="2" transform="rotate(-54 152 201)"/>
+      <rect x="165" y="172" width="7" height="13" rx="2" transform="rotate(-58 168 178)"/>
+      <rect x="180" y="146" width="7" height="13" rx="2" transform="rotate(-63 183 152)"/>
+      <rect x="193" y="120" width="7" height="13" rx="2" transform="rotate(-69 196 126)"/>
+      <rect x="203" y="93" width="7" height="13" rx="2" transform="rotate(-77 206 99)"/>
+      <rect x="209" y="65" width="7" height="13" rx="2" transform="rotate(-84 212 71)"/>
+    </g>
+    <!-- Play mark -->
+    <path d="M91 293L121 299L103 323Z" fill="url(#gold)" stroke="#8b5d18" stroke-width="2"/>
+  </g>
+
+  <!-- Wordmark, with vector text that scales with the viewBox -->
+  <g filter="url(#softShadow)">
+    <text x="470" y="267" font-family="Arial, Helvetica, sans-serif" font-size="170"
+          font-weight="900" letter-spacing="-8" fill="url(#red)" stroke="#650611"
+          stroke-width="3" paint-order="stroke fill">Reelify</text>
+    <text x="476" y="326" font-family="Arial, Helvetica, sans-serif" font-size="43"
+          font-weight="500" letter-spacing="1.5" fill="url(#red)" stroke="#6b111b"
+          stroke-width="1.5" paint-order="stroke fill">More Cinema, Worldwide</text>
+  </g>
+</svg>

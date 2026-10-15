@@ -8,18 +8,19 @@ function Footer() {
           <div>
             <div className="font-display tracking-widest text-2xl text-white">
               <img
-                src="/Logo.png"
-                alt="Reelify"
-                width="160"
-                height="96"
+                src="/reelify-logo.svg"
+                alt="Reelify — More Cinema, Worldwide"
+                width="240"
+                height="84"
                 loading="lazy"
                 decoding="async"
-                className="h-20 md:h-24 w-auto object-contain"
+                className="block w-32 sm:w-40 md:w-48 h-auto max-w-full object-contain"
               />
             </div>
+
             <p className="mt-3 text-sm max-w-sm text-gray-300 leading-relaxed">
-              A neo-noir discovery experience for movies and series. Fast search,
-              curated rows, and detail pages powered by TMDB.
+              A neo-noir discovery experience for movies and series. Fast
+              search, curated rows, and detail pages powered by TMDB.
             </p>
 
             {/* Social Icons */}
@@ -81,9 +82,7 @@ function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 mt-10 pt-6 text-sm flex flex-col sm:flex-row justify-between items-center gap-4 text-gray-400">
           <p>© {new Date().getFullYear()} Reelify. All rights reserved.</p>
-          <p className="text-gray-500">
-            Data provided by TMDB
-          </p>
+          <p className="text-gray-500">Data provided by TMDB</p>
         </div>
       </div>
     </footer>

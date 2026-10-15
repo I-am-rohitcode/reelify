@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-labelledby="title desc">
+  <title id="title">Reelify loading animation</title>
+  <desc id="desc">A gold film-reel globe rotates above the red Reelify wordmark while loading dots pulse.</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0a3"/>
+      <stop offset=".35" stop-color="#f6c453"/>
+      <stop offset=".7" stop-color="#b87817"/>
+      <stop offset="1" stop-color="#ffe28a"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#12365b"/>
+      <stop offset="1" stop-color="#061426"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff555d"/>
+      <stop offset=".45" stop-color="#e11d2e"/>
+      <stop offset="1" stop-color="#790b18"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .reel { transform-origin: 210px 135px; animation: spin 8s linear infinite; }
+      .orbit { transform-origin: 210px 135px; animation: orbit 5s linear infinite; }
+      .dot { animation: pulse 1.2s ease-in-out infinite; }
+      .dot:nth-child(2) { animation-delay: .2s; }
+      .dot:nth-child(3) { animation-delay: .4s; }
+      .bar { stroke-dasharray: 95 240; animation: progress 2.4s ease-in-out infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes orbit { to { transform: rotate(-360deg); } }
+      @keyframes pulse { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+      @keyframes progress { 0% { stroke-dashoffset: 240; } 50% { stroke-dashoffset: 100; } 100% { stroke-dashoffset: -240; } }
+      @media (prefers-reduced-motion: reduce) {
+        .reel, .orbit, .dot, .bar { animation: none; }
+        .bar { stroke-dasharray: 140 240; }
+      }
+    </style>
+  </defs>
+
+  <!-- Transparent background: intended to sit on a dark page -->
+  <g class="orbit" fill="none" stroke="#ff303e" stroke-width="2.5" opacity=".9" filter="url(#glow)">
+    <ellipse cx="210" cy="135" rx="112" ry="35" transform="rotate(-18 210 135)"/>
+  </g>
+
+  <!-- Globe and film reel emblem -->
+  <g class="reel">
+    <circle cx="210" cy="135" r="67" fill="url(#navy)" stroke="url(#gold)" stroke-width="7"/>
+    <path d="M143 135H277 M210 68V202 M164 88Q210 135 164 182 M256 88Q210 135 256 182"
+          fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M157 105C174 77 194 65 212 68C190 91 187 117 201 139C215 161 208 183 184 199C160 184 145 161 143 139"
+          fill="url(#gold)" stroke="#8e5b13" stroke-width="2"/>
+    <circle cx="169" cy="111" r="10" fill="url(#navy)" stroke="#a87320" stroke-width="2"/>
+    <circle cx="159" cy="143" r="9" fill="url(#navy)" stroke="#a87320" stroke-width="2"/>
+    <circle cx="179" cy="171" r="9" fill="url(#navy)" stroke="#a87320" stroke-width="2"/>
+    <path d="M151 173Q184 160 201 130Q215 105 213 78" fill="none" stroke="#f9d46d" stroke-width="8" stroke-linecap="round"/>
+    <path d="M151 173Q184 160 201 130Q215 105 213 78" fill="none" stroke="#0a1728" stroke-width="2.5" stroke-dasharray="4 7"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="210" y="267" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
+        font-size="49" font-weight="900" letter-spacing="-2" fill="url(#red)" stroke="#5f0912" stroke-width="1.2">Reelify</text>
+  <text x="210" y="291" text-anchor="middle" font-family="Arial, Helvetica, sans-serif"
+        font-size="10" letter-spacing="3.2" fill="#f3c9cd">MORE CINEMA, WORLDWIDE</text>
+
+  <!-- Loading label and animated dots -->
+  <text x="184" y="327" text-anchor="end" font-family="Arial, Helvetica, sans-serif"
+        font-size="12" letter-spacing="2.5" fill="#f8e9eb">LOADING</text>
+  <g fill="#ff3545" filter="url(#glow)">
+    <circle class="dot" cx="202" cy="323" r="3"/>
+    <circle class="dot" cx="215" cy="323" r="3"/>
+    <circle class="dot" cx="228" cy="323" r="3"/>
+  </g>
+
+  <!-- Animated progress indicator -->
+  <rect x="90" y="350" width="240" height="7" rx="3.5" fill="#170a0d" stroke="#6e2028" stroke-width="1"/>
+  <rect x="93" y="352" width="234" height="3" rx="1.5" fill="#391016"/>
+  <rect class="bar" x="93" y="352" width="234" height="3" rx="1.5" fill="none" stroke="#ff3545" stroke-width="3" filter="url(#glow)"/>
+</svg>

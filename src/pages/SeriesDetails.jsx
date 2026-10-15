@@ -23,12 +23,15 @@ function SeriesDetails() {
   const [genre, setGenre] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const PER_PAGE = 6;
+  const [epPage, setEpPage] = useState(1);
 
   const fetchEpisodes = useCallback(
     async (season) => {
       // console.log("fetchEpisodes called for season:", season);
       try {
         setSelectedSeason(season);
+        setEpPage(1);
         const ep = await getSeasonEpisodes(id, season);
         console.log(`getSeasonEpisodes for season ${season} success:`, ep.data);
         setEpisodes(ep.data.episodes || []);
@@ -105,6 +108,16 @@ function SeriesDetails() {
       </div>
     );
 
+  const totalEpPage = Math.max(1, Math.ceil(episodes.length / PER_PAGE));
+  const pagedEpisoes = episodes.slice(
+    (epPage - 1) * PER_PAGE,
+    epPage * PER_PAGE,
+  );
+  const goToEpPage = (p) => {
+    setEpPage(p);
+    document.getElementById("episodes")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-red-600/40">
       {/* Floating Back Button */}
@@ -114,7 +127,6 @@ function SeriesDetails() {
       >
         <FaArrowLeft /> Back
       </button>
-
       {/* Hero Banner Section */}
       <div className="relative w-full h-[70vh] md:h-[85vh] overflow-hidden">
         <div className="absolute inset-0">
@@ -181,7 +193,6 @@ function SeriesDetails() {
           </div>
         </div>
       </div>
-
       <div className="px-6 md:px-16 lg:px-24 py-12 max-w-[1600px] mx-auto space-y-16">
         {/* OTT Platforms */}
         {providers.length > 0 && (
@@ -203,7 +214,10 @@ function SeriesDetails() {
         )}
 
         {/* Episodes Section */}
-        <div className="animate-fade-in-up delay-200">
+        <div
+          id="episodes"
+          className="animate-fade-in-up delay-200 scroll-mt-24"
+        >
           <div className="flex items-center justify-between mb-8 border-b border-gray-800 pb-4">
             <h2 className="text-2xl md:text-3xl font-bold">Episodes</h2>
 
@@ -221,7 +235,7 @@ function SeriesDetails() {
           </div>
 
           <div className="space-y-4">
-            {episodes.map((ep) => (
+            {pagedEpisoes.map((ep) => (
               <div
                 key={ep.id}
                 className="group flex flex-col sm:flex-row gap-4 sm:gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-3 sm:p-4 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-xl"
@@ -276,6 +290,30 @@ function SeriesDetails() {
               </div>
             ))}
           </div>
+          {totalEpPage > 1 && (
+            <nav
+              aria-label="Episode pages"
+              className="mt-8 flex items-center justify-center gap-2"
+            >
+              <button
+                onClick={() => goToEpPage(epPage - 1)}
+                disabled={epPage === 1}
+                className="rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                ← Prev
+              </button>
+              <span className="px-3 text-sm text-gray-300">
+                Page {epPage} of {totalEpPage}
+              </span>
+              <button
+                onClick={() => goToEpPage(epPage + 1)}
+                disabled={epPage === totalEpPage}
+                className="rounded-lg border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Next →
+              </button>
+            </nav>
+          )}
         </div>
       </div>
     </div>

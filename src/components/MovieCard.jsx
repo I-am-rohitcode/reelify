@@ -25,7 +25,7 @@ function MovieCard({ movie }) {
     : `${title} movie poster`;
 
   return (
-    <div className="relative group/wrap">
+    <div className="relative isolate hover:z-10 group/wrap">
       <Link
         to={targetUrl}
         className="relative block cursor-pointer transition-all duration-300 transform hover:scale-[1.04] hover:-translate-y-2 hover:z-50 rounded-2xl overflow-hidden aspect-[2/3] group/card bg-white/5 border border-white/10 hover:border-white/20 shadow-glow focus-ring"
