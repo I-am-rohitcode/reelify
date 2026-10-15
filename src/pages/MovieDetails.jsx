@@ -184,11 +184,13 @@ function MovieDetails() {
             src={
               movie.backdrop_path
                 ? BACKDROP_URL + movie.backdrop_path
-                : IMG_URL + movie.poster_path
+                : movie.poster_path
+                  ? IMG_URL + movie.poster_path
+                  : `${PRODUCTION_URL}/Icon.png`
             }
             alt={`${movie.title} movie backdrop`}
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             decoding="async"
             className="w-full h-full object-cover object-top opacity-40 scale-105"
           />
@@ -213,33 +215,20 @@ function MovieDetails() {
               </span>
             )}
             {movie.runtime > 0 && (
-<<<<<<< HEAD
-  <>
-    <span
-      className="w-1.5 h-1.5 rounded-full bg-gray-500"
-      aria-hidden="true"
-    />
-    <span className="text-gray-300">
-      {Math.floor(movie.runtime / 60) > 0 &&
-        `${Math.floor(movie.runtime / 60)}h `}
-      {movie.runtime % 60 > 0 && `${movie.runtime % 60}m`}
-    </span>
-  </>
-)}
-=======
               <>
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-gray-500"
                   aria-hidden="true"
                 />
                 <span className="text-gray-300">
-                  {Math.floor(movie.runtime / 60) > 0 &&
-                    `${Math.floor(movie.runtime / 60)}h `}
-                  {movie.runtime % 60 > 0 && `${movie.runtime % 60}m`}
+                  {Math.floor(movie.runtime / 60) > 0
+                    ? `${Math.floor(movie.runtime / 60)}h ${
+                        movie.runtime % 60 > 0 ? `${movie.runtime % 60}m` : ""
+                      }`.trim()
+                    : `${movie.runtime} min`}
                 </span>
               </>
             )}
->>>>>>> 635c0d9 (Update Reelify logo and responsive navbar)
           </div>
           <div className="flex flex-wrap gap-2 mb-8" aria-label="Movie genres">
             {movie.genres?.map((g) => (
